@@ -16,6 +16,8 @@ include_directories("${CMAKE_SOURCE_DIR}")
 link_directories("${LOCAL_LIBRARY_DIR}")
 
 if(BUILD_TEST)
+     add_subdirectory(googletest)
+     include_directories("${CMAKE_SOURCE_DIR}/googletest/googletest/include")
      enable_testing()
 endif()
 
