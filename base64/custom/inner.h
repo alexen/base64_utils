@@ -23,7 +23,9 @@ constexpr std::size_t OUTPUT_BLOCK_LEN = 4;
 
 
 
-void encode_block( const unsigned char* in, const std::size_t len, char* out );
+void encode_block( const unsigned char* in, const std::size_t len, char* out ) noexcept;
+
+int decode_block( const char* in, unsigned char* out ) noexcept;
 
 
 } // namespace inner
