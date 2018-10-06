@@ -34,7 +34,15 @@ void encode( std::istream& is, std::ostream& os )
 
 void decode( std::istream& is, std::ostream& os )
 {
-     BOOST_THROW_EXCEPTION( std::runtime_error{ "not implemented" } );
+     char inbuf[ inner::consts::OUTPUT_BLOCK_LEN ];
+     unsigned char outbuf[ inner::consts::INPUT_BLOCK_LEN ];
+
+     std::streamsize read = 0;
+     while( (read = is.readsome( inbuf, sizeof( inbuf ) )) > 0 )
+     {
+          const auto n = inner::decode_block( inbuf, outbuf );
+          os.write( reinterpret_cast< char* >( outbuf ), n );
+     }
 }
 
 
